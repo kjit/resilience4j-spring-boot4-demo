@@ -1,9 +1,9 @@
-# Spring Boot 3 demo of Resilience4j
+# Spring Boot 4 demo of Resilience4j
 
 ![Gradle Wrapper Status](https://github.com/resilience4j/resilience4j-spring-boot2-demo/actions/workflows/gradle-wrapper-validation.yml/badge.svg)
 ![Build Status](https://github.com/resilience4j/resilience4j-spring-boot2-demo/actions/workflows/gradle-build.yml/badge.svg)
 
-This demo shows how to use the fault tolerance library [Resilience4j](https://github.com/resilience4j/resilience4j) in a Spring Boot 3 application.
+This demo shows how to use the fault tolerance library [Resilience4j](https://github.com/resilience4j/resilience4j) in a Spring Boot 4 application.
 
 See [User Guide](https://resilience4j.readme.io/docs/getting-started-3) for more details.
 

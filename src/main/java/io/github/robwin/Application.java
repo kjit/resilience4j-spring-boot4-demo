@@ -25,16 +25,16 @@ import static org.springframework.web.reactive.function.server.ServerResponse.pe
 @SpringBootApplication
 public class Application {
 
-    private static Logger LOG = LoggerFactory.getLogger(Application.class);
+    private static final Logger LOG = LoggerFactory.getLogger(Application.class);
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
 
     @Bean
     RouterFunction<ServerResponse> redirectRoot() {
         return route(GET("/"),
-                req -> permanentRedirect(URI.create("/actuator")).build());
+                _ -> permanentRedirect(URI.create("/actuator")).build());
     }
 
     @Bean
@@ -46,7 +46,7 @@ public class Application {
     @Bean
     public RegistryEventConsumer<CircuitBreaker> myRegistryEventConsumer() {
 
-        return new RegistryEventConsumer<CircuitBreaker>() {
+        return new RegistryEventConsumer<>() {
             @Override
             public void onEntryAddedEvent(EntryAddedEvent<CircuitBreaker> entryAddedEvent) {
                 entryAddedEvent.getAddedEntry().getEventPublisher().onEvent(event -> LOG.info(event.toString()));
@@ -67,7 +67,7 @@ public class Application {
     @Bean
     public RegistryEventConsumer<Retry> myRetryRegistryEventConsumer() {
 
-        return new RegistryEventConsumer<Retry>() {
+        return new RegistryEventConsumer<>() {
             @Override
             public void onEntryAddedEvent(EntryAddedEvent<Retry> entryAddedEvent) {
                 entryAddedEvent.getAddedEntry().getEventPublisher().onEvent(event -> LOG.info(event.toString()));

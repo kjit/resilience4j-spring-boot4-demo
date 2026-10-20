@@ -9,6 +9,8 @@ import io.github.resilience4j.retry.annotation.Retry;
 import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
 import io.github.robwin.exception.BusinessException;
 import io.vavr.control.Try;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
@@ -30,12 +32,14 @@ import static io.github.resilience4j.bulkhead.annotation.Bulkhead.Type;
 public class BackendAService implements Service {
 
     private static final String BACKEND_A = "backendA";
+    private static final Logger log = LoggerFactory.getLogger(BackendAService.class);
 
     @Override
     @CircuitBreaker(name = BACKEND_A)
     @Bulkhead(name = BACKEND_A)
     @Retry(name = BACKEND_A)
     public String failure() {
+        log.info("BackendAService.failure() called");
         throw new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR, "This is a remote exception");
     }
 
